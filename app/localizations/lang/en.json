@@ -1,0 +1,40 @@
+{
+	"common": {
+		"home": "Home",
+		"account": "Account"
+	},
+	"listingsScreen": {
+		"empty": "No to-dos in this list! Use the + button to add a to-do."
+	},
+	"accountScreen": {
+		"logout": "Logout",
+		"messages": "My message",
+		"listings": "My listings",
+		"userTitle": "Saeed Mahamoud",
+		"userSubTitle": "5 listings"
+	},
+	"listingEditScreen": {
+		"pageTitle": "Add new listing",
+		"pageSubTitle": "new listing to you listings",
+		"pricePlaceholder": "price",
+		"titlePlaceholder": "title",
+		"categoryPlaceholder": "categories",
+		"descPlaceholder": "description",
+		"btnTitle": "Save"
+	},
+	"errors": {
+		"required": "This filed is required",
+		"imageRequired": "chose at least one image",
+		"noInternet": "No inter connection"
+	},
+	"routes": {
+		"home": "Home",
+		"listing_edit": "Add Listing",
+		"listings": "Listing",
+		"listing_details": "Details",
+		"login": "Login",
+		"register": "Create Account",
+		"account": "Profile",
+		"messages": "Messages"
+	}
+}

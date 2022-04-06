@@ -1,0 +1,40 @@
+{
+	"common": {
+		"home": "الرئيسية",
+		"account": "حسابي"
+	},
+	"listingsScreen": {
+		"empty": "No to-dos in this list! Use the + button to add a to-do."
+	},
+	"accountScreen": {
+		"logout": "تسجيل خروج",
+		"messages": "رسائلي",
+		"listings": "ممتلكاتي",
+		"userTitle": "سعيد محمود",
+		"userSubTitle": "5 اشياء"
+	},
+	"listingEditScreen": {
+		"pageTitle": "اضافة شئ جديد",
+		"pageSubTitle": "اضافة جديدة للممتلكات",
+		"pricePlaceholder": "السعر",
+		"titlePlaceholder": "العنوان",
+		"categoryPlaceholder": "الاقسام",
+		"descPlaceholder": "الوصف",
+		"btnTitle": "حفظ"
+	},
+	"errors": {
+		"required": "الحقل مطلوب",
+		"imageRequired": "اختار صورة واحدة على الاقل",
+		"noInternet": "ليس هنالك اتصال بالانترنت"
+	},
+	"routes": {
+		"home": "الرئيسية",
+		"listing_edit": "اضافة",
+		"listings": "الممتلكات",
+		"listing_details": "تفاصيل",
+		"login": "تسجيل دخول",
+		"register": "تسجيل حساب",
+		"account": "البروفايل",
+		"messages": "الرسائل"
+	}
+}
