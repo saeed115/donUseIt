@@ -11,7 +11,13 @@
 		"messages": "رسائلي",
 		"listings": "ممتلكاتي",
 		"userTitle": "سعيد محمود",
-		"userSubTitle": "5 اشياء"
+		"userSubTitle": "5 اشياء",
+		"setting": "الضبط",
+		"settingScreen": {
+			"langTitle": "اختار اللغة",
+			"lang": "اللغة العربية",
+			"antherLang": "Language english"
+		}
 	},
 	"listingEditScreen": {
 		"pageTitle": "اضافة شئ جديد",
@@ -35,6 +41,7 @@
 		"login": "تسجيل دخول",
 		"register": "تسجيل حساب",
 		"account": "البروفايل",
-		"messages": "الرسائل"
+		"messages": "الرسائل",
+		"setting": "الضبط"
 	}
 }

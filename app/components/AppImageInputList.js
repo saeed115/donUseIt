@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView, I18nManager } from 'react-native';
 
 import AppImageInput from './AppImageInput';
 
@@ -34,9 +34,10 @@ export default AppImageInputList;
 
 const styles = StyleSheet.create({
 	imageContainer: {
-		flexDirection: 'row',
+		flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
 	},
 	image: {
 		marginRight: 10,
+		flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
 	},
 });

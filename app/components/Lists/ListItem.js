@@ -7,7 +7,11 @@ import defalutStyle from '../../config/defalutStyle';
 
 const ListItem = ({ title, subTitle, image, onPress, IconComponent, style }) => {
 	return (
-		<TouchableHighlight underlayColor={defalutStyle.colors.white} onPress={onPress}>
+		<TouchableHighlight
+			style={{ borderRadius: 10 }}
+			underlayColor={defalutStyle.colors.secondary}
+			onPress={onPress}
+		>
 			<View style={[styles.container, style]}>
 				{IconComponent}
 				{image && <Image style={styles.image} source={image} />}

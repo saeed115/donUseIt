@@ -11,7 +11,13 @@
 		"messages": "My message",
 		"listings": "My listings",
 		"userTitle": "Saeed Mahamoud",
-		"userSubTitle": "5 listings"
+		"userSubTitle": "5 listings",
+		"setting": "Setting",
+		"settingScreen": {
+			"langTitle": "Chose Language",
+			"lang": "Language english",
+			"antherLang": "اللغة العربية"
+		}
 	},
 	"listingEditScreen": {
 		"pageTitle": "Add new listing",
@@ -35,6 +41,7 @@
 		"login": "Login",
 		"register": "Create Account",
 		"account": "Profile",
-		"messages": "Messages"
+		"messages": "Messages",
+		"setting": "Setting"
 	}
 }

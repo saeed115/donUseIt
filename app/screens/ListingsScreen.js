@@ -8,7 +8,7 @@ import listingApi from '../api/listingApi';
 import AppText from '../components/AppText';
 import AppButton from '../components/AppButton';
 import useApi from '../hooks/useApi';
-import { IMLocalized as t } from '../localizations';
+import { t } from '../localizations';
 
 const ListingsScreen = ({ navigation }) => {
 	const { error, data: listings, requset: getListing, loading } = useApi(listingApi.getListing);

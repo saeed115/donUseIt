@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import ListingsScreen from '../screens/ListingsScreen';
 import ListingDetailsScreen from '../screens/ListingDetailsScreen';
-import { IMLocalized as t } from '../localizations';
+import { t } from '../localizations';
 
 const Stack = createNativeStackNavigator();
 

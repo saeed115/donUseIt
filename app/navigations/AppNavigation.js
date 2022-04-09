@@ -4,7 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { IMLocalized as t } from '../localizations';
+import { t } from '../localizations';
 import ListingEditScreen from '../screens/ListingEditScreen';
 import defalutStyle from '../config/defalutStyle';
 import FeedNavigation from './FeedNavigation';

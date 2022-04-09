@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormikContext } from 'formik';
+import { I18nManager } from 'react-native';
 
 import AppImageInputList from '../AppImageInputList';
 import ErrorMessage from './ErrorMessage';

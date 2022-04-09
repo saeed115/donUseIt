@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TouchableWithoutFeedback, Image } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, I18nManager, Image } from 'react-native';
 
 import AppText from './AppText';
 import colors from '../config/colors';
@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
 	subTitle: {
 		paddingTop: 15,
 		color: colors.primary,
-		textAlign: 'right',
+		textAlign: I18nManager ? 'left' : 'auto',
 	},
 });

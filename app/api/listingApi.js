@@ -1,13 +1,9 @@
-import { create } from 'apisauce';
+import { I18nManager } from 'react-native';
+import clientApi from './clientApi';
 
-const client = create({
-	// baseURL: 'http://c0cd-41-95-57-176.ngrok.io',
-	baseURL: 'https://my-json-server.typicode.com/saeed115/googo',
-});
+const endPoint = I18nManager.isRTL ? '/listing-ar' : '/listing-en';
 
-const endPoint = '/listing';
-
-const getListing = () => client.get(endPoint);
+const getListing = () => clientApi.get(endPoint);
 
 const addListing = (listing) => {
 	const data = new FormData();
@@ -28,7 +24,7 @@ const addListing = (listing) => {
 	if (listing.location) data.append('location', JSON.stringify(listing.location));
 
 	console.log(data.price);
-	return client.post(endPoint, data);
+	return clientApi.post(endPoint, data);
 };
 
 export default {

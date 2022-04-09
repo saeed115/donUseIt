@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import Constants from 'expo-constants';
 import { useNetInfo } from '@react-native-community/netinfo';
 
-import { IMLocalized as t } from '../localizations';
+import { t } from '../localizations';
 import colors from '../config/colors';
 import AppText from './AppText';
 

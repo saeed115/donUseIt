@@ -6,7 +6,7 @@ import FullScreen from '../components/FullScreen';
 import ListItem from '../components/Lists/ListItem';
 import colors from '../config/colors';
 import defalutStyle from '../config/defalutStyle';
-import { IMLocalized as t } from '../localizations';
+import { t } from '../localizations';
 
 const ListingDetailsScreen = ({ route }) => {
 	const listing = route.params;

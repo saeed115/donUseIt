@@ -15,7 +15,7 @@ import CategoryPicker from '../components/CategoryPicker';
 import AppFormImagePicker from '../components/Forms/AppFormImagePicker';
 import useLocation from '../hooks/useLocation';
 import listingApi from '../api/listingApi';
-import { IMLocalized as t } from '../localizations';
+import { t } from '../localizations';
 
 const validationSchema = object().shape({
 	title: string()
