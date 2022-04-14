@@ -6,13 +6,13 @@ import FullScreen from '../components/FullScreen';
 import RadioButton from '../components/RadioButton';
 import SwitchButton from '../components/SwitchButton';
 import defalutStyle from '../config/defalutStyle';
-import { t } from '../localizations';
+import { useTranslation } from 'react-i18next';
 
 const SettingScreen = () => {
 	const [arLang, setArLang] = useState(I18nManager.isRTL);
 	const [enLang, setEnLang] = useState(I18nManager.isRTL !== true);
 
-	console.log();
+	const { t } = useTranslation();
 
 	return (
 		<FullScreen style={styles.screen}>

@@ -4,11 +4,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
-import routes from './routes';
+import { useTranslation } from 'react-i18next';
 
 const Stack = createNativeStackNavigator();
 
 const AuthNavigation = () => {
+	const { t } = useTranslation();
+
 	return (
 		<Stack.Navigator>
 			<Stack.Screen
@@ -18,8 +20,8 @@ const AuthNavigation = () => {
 					headerShown: false,
 				}}
 			/>
-			<Stack.Screen name={routes.LOGIN} component={LoginScreen} />
-			<Stack.Screen name={routes.REGISTER} component={RegisterScreen} />
+			<Stack.Screen name={t('common.login')} component={LoginScreen} />
+			<Stack.Screen name={t('common.register')} component={RegisterScreen} />
 		</Stack.Navigator>
 	);
 };

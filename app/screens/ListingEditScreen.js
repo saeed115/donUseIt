@@ -15,16 +15,16 @@ import CategoryPicker from '../components/CategoryPicker';
 import AppFormImagePicker from '../components/Forms/AppFormImagePicker';
 import useLocation from '../hooks/useLocation';
 import listingApi from '../api/listingApi';
-import { t } from '../localizations';
+import { useTranslation } from 'react-i18next';
 
 const validationSchema = object().shape({
 	title: string()
 		.required(() => t('errors.required'))
-		.min(3, 'العنوان اكبر من او يساوي 3 احرف'),
+		.min(3, () => t('errors.title')),
 	price: number()
 		.required(() => t('errors.required'))
 		.min(1)
-		.max(10000, 'السعر اصغر من او يساوي 10000'),
+		.max(10000, () => t('errors.price')),
 	description: string(),
 	category: object()
 		.required(() => t('errors.required'))
@@ -90,12 +90,12 @@ const categories = [
 ];
 
 const ListingEditScreen = () => {
+	const { t } = useTranslation();
+
 	const location = useLocation();
 
 	const handleSubmit = async (listing, { resetForm }) => {
 		const result = await listingApi.addListing({ ...listing, location });
-		console.log(result.status);
-		console.log(result.originalError);
 
 		if (!result.ok) return alert('لم يتم الحفظ');
 
@@ -121,6 +121,7 @@ const ListingEditScreen = () => {
 				validationSchema={validationSchema}
 			>
 				<AppFormImagePicker style={styles.formField} name='images' />
+
 				<FormField
 					style={styles.formField}
 					maxLength={255}

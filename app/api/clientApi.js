@@ -1,9 +1,17 @@
 import { create } from 'apisauce';
+
 import cache from '../utility/cache';
 
 const clientApi = create({
-	baseURL: 'https://my-json-server.typicode.com/saeed115/googo',
+	baseURL: 'https://doneuseit.herokuapp.com',
 });
+
+// clientApi.addAsyncRequestTransform(async (requests) => {
+// 	const response = await storage.getToken();
+// 	const token = response.token ? response.token : '';
+
+// 	requests.headers['authorization'] = token;
+// });
 
 const get = clientApi.get;
 

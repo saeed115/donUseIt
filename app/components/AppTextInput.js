@@ -37,11 +37,10 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	icon: {
-		paddingRight: 15,
+		padding: 15,
 	},
 	text: {
 		flex: 1,
-		// textAlign: 'right',
 		padding: 15,
 	},
 });

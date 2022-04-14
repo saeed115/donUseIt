@@ -4,7 +4,7 @@ import { Restart } from 'fiction-expo-restart';
 import * as Localization from 'expo-localization';
 
 import colors from '../config/colors';
-import { t } from '../localizations';
+import { useTranslation } from 'react-i18next';
 import cache from '../utility/cache';
 import AppText from './AppText';
 import i18n from 'i18n-js';
@@ -16,6 +16,8 @@ const SwitchButton = () => {
 		setIsEnabled((previousState) => !previousState);
 
 		await cache.storeData('localeLang', Localization.locale === 'ar-AE' ? 'en-US' : 'ar-AE');
+		const locale = await cache.getData('localeLang');
+		i18n.locale = locale;
 
 		I18nManager.forceRTL(Localization.locale === 'ar-AE' ? true : false);
 

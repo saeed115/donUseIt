@@ -39,5 +39,10 @@ const styles = StyleSheet.create({
 	image: {
 		marginRight: 10,
 		flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	icon: {
+		position: 'absolute',
 	},
 });

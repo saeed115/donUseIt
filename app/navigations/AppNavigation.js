@@ -1,10 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { View, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { t } from '../localizations';
 import ListingEditScreen from '../screens/ListingEditScreen';
 import defalutStyle from '../config/defalutStyle';
 import FeedNavigation from './FeedNavigation';
@@ -13,6 +13,8 @@ import AccountNavigator from './AccountNavigator';
 
 const Tab = createBottomTabNavigator();
 const AppNavigation = () => {
+	const { t } = useTranslation();
+
 	return (
 		<Tab.Navigator
 			screenOptions={{

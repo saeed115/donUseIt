@@ -4,27 +4,14 @@ import { StyleSheet, View, Image, ImageBackground } from 'react-native';
 import ListItem from '../components/Lists/ListItem';
 import Icon from '../components/Icon';
 import defalutStyle from '../config/defalutStyle';
-import { t } from '../localizations';
+import { useTranslation } from 'react-i18next';
 import FullScreen from '../components/FullScreen';
 import AppText from '../components/AppText';
+import useAuth from '../auth/useAuth';
+import colors from '../config/colors';
 
 const AccountScreen = ({ navigation }) => {
-	const items = [
-		{
-			title: t('accountScreen.listings'),
-			icon: {
-				name: 'format-list-bulleted',
-				backgroundColor: defalutStyle.colors.primary,
-			},
-		},
-		{
-			title: t('accountScreen.messages'),
-			icon: {
-				name: 'email',
-				backgroundColor: defalutStyle.colors.secondary,
-			},
-		},
-	];
+	const { user, logOut } = useAuth();
 
 	return (
 		<>
@@ -34,30 +21,30 @@ const AccountScreen = ({ navigation }) => {
 				style={styles.background}
 			>
 				<Image style={styles.userImage} source={require('../assets/user.jpg')} />
-				<AppText style={styles.title}>{t('accountScreen.userTitle')}</AppText>
-				<AppText style={styles.subTitle}>{t('accountScreen.userSubTitle')}</AppText>
+				<AppText style={styles.title}>{user.username}</AppText>
+				<AppText style={styles.subTitle}>{user.email}</AppText>
 			</ImageBackground>
 
 			<FullScreen style={styles.screen}>
 				<View style={{ padding: 15 }}>
-					{items.map((item) => (
-						<View key={item.title} style={styles.container}>
-							<ListItem
-								key={item.title}
-								style={styles.listItem}
-								title={item.title}
-								subTitle={item.subTitle}
-								onPress={() => navigation.navigate(t('routes.messages'))}
-								IconComponent={
-									<Icon
-										name={item.icon.name}
-										size={50}
-										backgroundColor={item.icon.backgroundColor}
-									/>
-								}
-							/>
-						</View>
-					))}
+					<View style={styles.container}>
+						<ListItem
+							style={styles.listItem}
+							title={t('accountScreen.listings')}
+							IconComponent={
+								<Icon name='format-list-bulleted' size={50} backgroundColor={colors.secondary} />
+							}
+						/>
+					</View>
+
+					<View style={styles.container}>
+						<ListItem
+							style={styles.listItem}
+							title={t('accountScreen.messages')}
+							onPress={() => navigation.navigate(t('routes.messages'))}
+							IconComponent={<Icon name='email' size={50} backgroundColor={colors.primary} />}
+						/>
+					</View>
 
 					<View style={styles.container}>
 						<ListItem
@@ -72,6 +59,7 @@ const AccountScreen = ({ navigation }) => {
 						<ListItem
 							style={styles.listItem}
 							title={t('accountScreen.logout')}
+							onPress={() => logOut()}
 							IconComponent={<Icon name='logout' size={50} backgroundColor='#ffe66d' />}
 						/>
 					</View>

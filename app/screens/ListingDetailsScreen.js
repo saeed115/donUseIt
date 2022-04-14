@@ -1,15 +1,16 @@
 import React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, I18nManager } from 'react-native';
 
 import AppText from '../components/AppText';
 import FullScreen from '../components/FullScreen';
 import ListItem from '../components/Lists/ListItem';
 import colors from '../config/colors';
 import defalutStyle from '../config/defalutStyle';
-import { t } from '../localizations';
+import { useTranslation } from 'react-i18next';
 
 const ListingDetailsScreen = ({ route }) => {
 	const listing = route.params;
+	const { t } = useTranslation();
 
 	return (
 		<FullScreen style={styles.screen}>
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
 	subTitle: {
 		paddingTop: 10,
 		color: colors.primary,
-		textAlign: 'right',
+		textAlign: I18nManager ? 'left' : 'auto',
 	},
 	description: {
 		paddingTop: 10,

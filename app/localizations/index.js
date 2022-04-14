@@ -2,7 +2,6 @@ import memoize from 'lodash.memoize'; // Use for caching/memoize for better perf
 import i18n from 'i18n-js';
 import * as Localization from 'expo-localization';
 import { I18nManager } from 'react-native';
-import cache from '../utility/cache';
 
 export const translationGetters = {
 	'en-US': () => require('./lang/en.json'),
@@ -15,12 +14,10 @@ export const t = memoize(
 );
 
 export const init = () => {
-	// const locale = await cache.getData('localeLang');
-
 	let localeLanguageTag = Localization.locale;
 	let isRTL = Localization.isRTL;
 
-	// t.cache.clear();
+	t.cache.clear();
 	// update layout direction
 	I18nManager.forceRTL(isRTL);
 	// set i18n-js config

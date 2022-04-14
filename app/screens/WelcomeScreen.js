@@ -1,14 +1,15 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, Image, View } from 'react-native';
 import { useDeviceOrientation } from '@react-native-community/hooks';
+import { useTranslation } from 'react-i18next';
 
 import AppText from '../components/AppText';
 import AppButton from '../components/AppButton';
 import colors from '../config/colors';
-import { NavigationContainer } from '@react-navigation/native';
 
 function WelcomeScreen({ navigation }) {
 	const { landscape } = useDeviceOrientation();
+	const { t } = useTranslation();
 
 	return (
 		<ImageBackground blurRadius={3} source={require('../assets/bg.jpg')} style={styles.background}>
@@ -20,20 +21,20 @@ function WelcomeScreen({ navigation }) {
 				}}
 			>
 				<Image resizeMode='contain' style={styles.image} source={require('../assets/logo.png')} />
-				<AppText style={styles.text}>خط عربي هنا للنص</AppText>
+				<AppText style={styles.text}>{t('welcomeScreen.slug')}</AppText>
 			</View>
 			<View style={styles.buttonContainer}>
 				<AppButton
 					style={{ width: landscape ? '65%' : '100%' }}
-					title={'تسجيل دخول'}
+					title={t('welcomeScreen.loginBtn')}
 					color='primary'
-					onPress={() => navigation.navigate('تسجيل دخول')}
+					onPress={() => navigation.navigate(t('common.login'))}
 				/>
 				<AppButton
 					style={{ width: landscape ? '65%' : '100%' }}
 					color='secondary'
-					title={'إنشاء حساب'}
-					onPress={() => navigation.navigate('تسجيل حساب')}
+					title={t('welcomeScreen.registerBtn')}
+					onPress={() => navigation.navigate(t('common.register'))}
 				/>
 			</View>
 		</ImageBackground>

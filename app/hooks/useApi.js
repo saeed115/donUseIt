@@ -14,7 +14,7 @@ const useApi = (apiFun) => {
 		if (!response.ok) return setError(true);
 
 		setError(false);
-		setData(response.data);
+		setData(response.data.data);
 	};
 
 	return {
