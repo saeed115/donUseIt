@@ -7,8 +7,13 @@ import { AppForm, AppFormField, ErrorMessage, SubmitButton } from '../components
 import { useTranslation } from 'react-i18next';
 import auth from '../api/auth';
 import useAuth from '../auth/useAuth';
+import useApi from '../hooks/useApi';
+import ActivityIndicator from '../components/ActivityIndicator';
 
 const RegisterScreen = () => {
+	const registerApi = useApi(auth.register);
+	const loginApi = useApi(auth.login);
+
 	const { t } = useTranslation();
 
 	const validationSchema = object().shape({
@@ -35,7 +40,7 @@ const RegisterScreen = () => {
 	const handelSubmit = async (userInfo) => {
 		delete userInfo.passwordConfirm;
 
-		const result = await auth.register(userInfo);
+		const result = await registerApi.requset(userInfo);
 
 		if (!result.ok) {
 			if (result.data) {
@@ -51,50 +56,53 @@ const RegisterScreen = () => {
 
 		setHasError(false);
 
-		const user = await auth.login(userInfo.username, userInfo.password);
+		const user = await loginApi.requset(userInfo.username, userInfo.password);
 
 		logIn(user.data.data);
 	};
 
 	return (
-		<Screen style={styles.container}>
-			<Image style={styles.logo} source={require('../assets/logo.png')} />
-			<AppForm
-				initialValues={{ username: '', email: '', password: '', passwordConfirm: '' }}
-				onSubmit={handelSubmit}
-				validationSchema={validationSchema}
-			>
-				<AppFormField name='username' iconName='account' placeholder={t('forms.username')} />
-				<AppFormField
-					name='email'
-					autoCapitalize='none'
-					autoCorrect={false}
-					iconName='email'
-					placeholder={t('forms.email')}
-					keyboardType='email-address'
-				/>
-				<AppFormField
-					name='password'
-					autoCapitalize='none'
-					autoCorrect={false}
-					iconName='lock'
-					placeholder={t('forms.password')}
-					secureTextEntry
-				/>
-				<AppFormField
-					name='passwordConfirm'
-					autoCapitalize='none'
-					autoCorrect={false}
-					iconName='lock'
-					placeholder={t('forms.passwordConfirm')}
-					secureTextEntry
-				/>
+		<React.Fragment>
+			<ActivityIndicator visible={registerApi.loading || loginApi.loading} />
+			<Screen style={styles.container}>
+				<Image style={styles.logo} source={require('../assets/logo.png')} />
+				<AppForm
+					initialValues={{ username: '', email: '', password: '', passwordConfirm: '' }}
+					onSubmit={handelSubmit}
+					validationSchema={validationSchema}
+				>
+					<AppFormField name='username' iconName='account' placeholder={t('forms.username')} />
+					<AppFormField
+						name='email'
+						autoCapitalize='none'
+						autoCorrect={false}
+						iconName='email'
+						placeholder={t('forms.email')}
+						keyboardType='email-address'
+					/>
+					<AppFormField
+						name='password'
+						autoCapitalize='none'
+						autoCorrect={false}
+						iconName='lock'
+						placeholder={t('forms.password')}
+						secureTextEntry
+					/>
+					<AppFormField
+						name='passwordConfirm'
+						autoCapitalize='none'
+						autoCorrect={false}
+						iconName='lock'
+						placeholder={t('forms.passwordConfirm')}
+						secureTextEntry
+					/>
 
-				<ErrorMessage error={errorMsg} visible={hasError} />
+					<ErrorMessage error={errorMsg} visible={hasError} />
 
-				<SubmitButton color='secondary' title={t('registerScreen.btn')} />
-			</AppForm>
-		</Screen>
+					<SubmitButton color='secondary' title={t('registerScreen.btn')} />
+				</AppForm>
+			</Screen>
+		</React.Fragment>
 	);
 };
 

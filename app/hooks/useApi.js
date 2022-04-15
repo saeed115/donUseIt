@@ -6,15 +6,14 @@ const useApi = (apiFun) => {
 	const [loading, setLoading] = useState();
 
 	const requset = async (...args) => {
-		setError(false);
 		setLoading(true);
 		const response = await apiFun(...args);
 		setLoading(false);
 
-		if (!response.ok) return setError(true);
-
-		setError(false);
+		setError(!response.ok);
 		setData(response.data.data);
+
+		return response;
 	};
 
 	return {

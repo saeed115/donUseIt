@@ -16,8 +16,8 @@ import AppFormImagePicker from '../components/Forms/AppFormImagePicker';
 import useLocation from '../hooks/useLocation';
 import listingApi from '../api/listingApi';
 import { useTranslation } from 'react-i18next';
-
-
+import ActivityIndicator from '../components/ActivityIndicator';
+import useApi from '../hooks/useApi';
 
 const categories = [
 	{
@@ -77,6 +77,7 @@ const categories = [
 ];
 
 const ListingEditScreen = () => {
+	const addListingApi = useApi(listingApi.addListing);
 	const { t } = useTranslation();
 
 	const validationSchema = object().shape({
@@ -97,68 +98,72 @@ const ListingEditScreen = () => {
 	const location = useLocation();
 
 	const handleSubmit = async (listing, { resetForm }) => {
-		const result = await listingApi.addListing({ ...listing, location });
+		const result = await addListingApi.requset({ ...listing, location });
 
 		if (!result.ok) return alert('لم يتم الحفظ');
-
 		alert('تم الحفظ');
+
 		resetForm();
 	};
 
 	return (
-		<Screen style={styles.container}>
-			<View style={styles.textContainer}>
-				<AppText style={styles.text}>{t('listingEditScreen.pageTitle')}</AppText>
-				<AppText>{t('listingEditScreen.pageSubTitle')}</AppText>
-			</View>
-			<Form
-				initialValues={{
-					title: '',
-					price: '',
-					description: '',
-					category: null,
-					images: [],
-				}}
-				onSubmit={handleSubmit}
-				validationSchema={validationSchema}
-			>
-				<AppFormImagePicker style={styles.formField} name='images' />
+		<React.Fragment>
+			<ActivityIndicator visible={addListingApi.loading} />
 
-				<FormField
-					style={styles.formField}
-					maxLength={255}
-					name='title'
-					placeholder={t('listingEditScreen.titlePlaceholder')}
-				/>
+			<Screen style={styles.container}>
+				<View style={styles.textContainer}>
+					<AppText style={styles.text}>{t('listingEditScreen.pageTitle')}</AppText>
+					<AppText>{t('listingEditScreen.pageSubTitle')}</AppText>
+				</View>
+				<Form
+					initialValues={{
+						title: '',
+						price: '',
+						description: '',
+						category: null,
+						images: [],
+					}}
+					onSubmit={handleSubmit}
+					validationSchema={validationSchema}
+				>
+					<AppFormImagePicker style={styles.formField} name='images' />
 
-				<FormField
-					style={styles.formField}
-					keyboardType='numeric'
-					maxLength={8}
-					name='price'
-					placeholder={t('listingEditScreen.pricePlaceholder')}
-				/>
+					<FormField
+						style={styles.formField}
+						maxLength={255}
+						name='title'
+						placeholder={t('listingEditScreen.titlePlaceholder')}
+					/>
 
-				<Picker
-					PickerItemComponent={CategoryPicker}
-					items={categories}
-					numOfColumns={3}
-					name='category'
-					placeholder={t('listingEditScreen.categoryPlaceholder')}
-					style={styles.formField}
-				/>
+					<FormField
+						style={styles.formField}
+						keyboardType='numeric'
+						maxLength={8}
+						name='price'
+						placeholder={t('listingEditScreen.pricePlaceholder')}
+					/>
 
-				<FormField
-					style={styles.formField}
-					maxLength={255}
-					multiline
-					name='description'
-					numberOfLines={3}
-					placeholder={t('listingEditScreen.descPlaceholder')}
-				/>
-				<SubmitButton color='secondary' title={t('listingEditScreen.btnTitle')} />
-			</Form>
-		</Screen>
+					<Picker
+						PickerItemComponent={CategoryPicker}
+						items={categories}
+						numOfColumns={3}
+						name='category'
+						placeholder={t('listingEditScreen.categoryPlaceholder')}
+						style={styles.formField}
+					/>
+
+					<FormField
+						style={styles.formField}
+						maxLength={255}
+						multiline
+						name='description'
+						numberOfLines={3}
+						placeholder={t('listingEditScreen.descPlaceholder')}
+					/>
+					<SubmitButton color='secondary' title={t('listingEditScreen.btnTitle')} />
+				</Form>
+			</Screen>
+		</React.Fragment>
 	);
 };
 

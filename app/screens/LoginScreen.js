@@ -8,8 +8,12 @@ import Screen from '../components/Screen';
 import { ErrorMessage, AppForm, AppFormField, SubmitButton } from '../components/Forms';
 import defalutStyle from '../config/defalutStyle';
 import useAuth from '../auth/useAuth';
+import useApi from '../hooks/useApi';
+import ActivityIndicator from '../components/ActivityIndicator';
 
 const LoginScreen = () => {
+	const loginApi = useApi(auth.login);
+
 	const { t } = useTranslation();
 
 	const validationSchema = Yup.object().shape({
@@ -24,7 +28,7 @@ const LoginScreen = () => {
 	const [hasError, setHasError] = useState(false);
 
 	const handelSubmit = async ({ username, password }) => {
-		const response = await auth.login(username, password);
+		const response = await loginApi.requset(username, password);
 
 		if (!response.ok) return setHasError(true);
 		setHasError(false);
@@ -33,35 +37,38 @@ const LoginScreen = () => {
 	};
 
 	return (
-		<Screen style={styles.container}>
-			<Image style={styles.logo} source={require('../assets/logo.png')} />
-			<AppForm
-				initialValues={{ username: '', password: '' }}
-				onSubmit={handelSubmit}
-				validationSchema={validationSchema}
-			>
-				<AppFormField
-					name='username'
-					autoCapitalize='none'
-					autoCorrect={false}
-					iconName='account'
-					placeholder={t('forms.username')}
-				/>
+		<React.Fragment>
+			<ActivityIndicator visible={loginApi.loading} />
+			<Screen style={styles.container}>
+				<Image style={styles.logo} source={require('../assets/logo.png')} />
+				<AppForm
+					initialValues={{ username: '', password: '' }}
+					onSubmit={handelSubmit}
+					validationSchema={validationSchema}
+				>
+					<AppFormField
+						name='username'
+						autoCapitalize='none'
+						autoCorrect={false}
+						iconName='account'
+						placeholder={t('forms.username')}
+					/>
 
-				<AppFormField
-					name='password'
-					autoCapitalize='none'
-					autoCorrect={false}
-					iconName='lock'
-					placeholder={t('forms.password')}
-					secureTextEntry
-				/>
+					<AppFormField
+						name='password'
+						autoCapitalize='none'
+						autoCorrect={false}
+						iconName='lock'
+						placeholder={t('forms.password')}
+						secureTextEntry
+					/>
 
-				<ErrorMessage error='Invalid Username/Password' visible={hasError} />
+					<ErrorMessage error='Invalid Username/Password' visible={hasError} />
 
-				<SubmitButton style={styles.button} color='secondary' title={t('loginScreen.btn')} />
-			</AppForm>
-		</Screen>
+					<SubmitButton style={styles.button} color='secondary' title={t('loginScreen.btn')} />
+				</AppForm>
+			</Screen>
+		</React.Fragment>
 	);
 };
 

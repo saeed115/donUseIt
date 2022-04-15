@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, I18nManager, Pressable, DevSettings, FlatList } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import RNRestart from 'react-native-restart';
+import { Restart } from 'fiction-expo-restart';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import AppText from '../components/AppText';
@@ -30,9 +30,14 @@ const SettingScreen = () => {
 							style={styles.button}
 							key={lang.name}
 							onPress={() => {
-								i18n.changeLanguage(lang.name);
-								I18nManager.forceRTL(lang.isRTL);
-								I18nManager.allowRTL(lang.isRTL);
+								i18n.changeLanguage(lang.name).then(() => {
+									try {
+										I18nManager.allowRTL(lang.isRTL);
+										// Restart();
+									} catch (e) {
+										console.log(e);
+									}
+								});
 							}}
 						>
 							<AppText style={styles.label}>{lang.label}</AppText>
