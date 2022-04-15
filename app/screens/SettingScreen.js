@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, I18nManager, Pressable, DevSettings, FlatList } from 'react-native';
+import { StyleSheet, View, I18nManager, Pressable, FlatList } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Restart } from 'fiction-expo-restart';
+// import { Restart } from 'fiction-expo-restart';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import AppText from '../components/AppText';

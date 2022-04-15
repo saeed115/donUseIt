@@ -10,7 +10,7 @@ import AppText from './AppText';
 const OfflineNotice = () => {
 	const netInfo = useNetInfo();
 	const { t } = useTranslation();
-	
+
 	if (netInfo.type !== 'unKnown' && netInfo.isInternetReachable === false) {
 		return (
 			<View style={styles.container}>
