@@ -1,39 +1,56 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, I18nManager } from 'react-native';
-import AppText from '../components/AppText';
-import FullScreen from '../components/FullScreen';
-
-import RadioButton from '../components/RadioButton';
-import SwitchButton from '../components/SwitchButton';
-import defalutStyle from '../config/defalutStyle';
+import React from 'react';
+import { StyleSheet, View, I18nManager, Pressable, DevSettings, FlatList } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import RNRestart from 'react-native-restart';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+import AppText from '../components/AppText';
+import defalutStyle from '../config/defalutStyle';
+import FlatScreen from '../components/FlatScreen';
+import ListItemSeparator from '../components/Lists/ListItemSeparator';
 
 const SettingScreen = () => {
-	const [arLang, setArLang] = useState(I18nManager.isRTL);
-	const [enLang, setEnLang] = useState(I18nManager.isRTL !== true);
+	const { t, i18n } = useTranslation();
 
-	const { t } = useTranslation();
+	const language = [
+		{ name: 'ar', label: 'عربي', isRTL: true },
+		{ name: 'en', label: 'English', isRTL: false },
+	];
 
 	return (
-		<FullScreen style={styles.screen}>
-			<View>
-				<AppText style={styles.text}>{t('accountScreen.settingScreen.langTitle')}</AppText>
-
-				<RadioButton
-					selected={arLang}
-					title={t('accountScreen.settingScreen.lang')}
-					onPress={() => console.log()}
+		<FlatScreen style={styles.screen}>
+			<AppText style={styles.text}>{t('accountScreen.settingScreen.langTitle')}</AppText>
+			<View style={styles.btnContainer}>
+				<FlatList
+					data={language}
+					keyExtractor={(lang) => lang.name}
+					ItemSeparatorComponent={ListItemSeparator}
+					renderItem={({ item: lang }) => (
+						<Pressable
+							style={styles.button}
+							key={lang.name}
+							onPress={() => {
+								i18n.changeLanguage(lang.name);
+								I18nManager.forceRTL(lang.isRTL);
+								I18nManager.allowRTL(lang.isRTL);
+							}}
+						>
+							<AppText style={styles.label}>{lang.label}</AppText>
+							{i18n.language === lang.name && (
+								<MaterialCommunityIcons
+									name='check'
+									color={defalutStyle.colors.secondary}
+									size={20}
+								/>
+							)}
+						</Pressable>
+					)}
 				/>
+				{/* {language.map((lang) => (
 
-				<RadioButton
-					selected={enLang}
-					title={t('accountScreen.settingScreen.antherLang')}
-					onPress={() => console.log()}
-				/>
-
-				<SwitchButton />
+				))} */}
 			</View>
-		</FullScreen>
+		</FlatScreen>
 	);
 };
 
@@ -47,5 +64,20 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		marginBottom: 15,
+	},
+	btnContainer: {
+		borderRadius: 10,
+		backgroundColor: defalutStyle.colors.white,
+	},
+	button: {
+		padding: 20,
+		// textAlign: I18nManager.isRTL ? 'right' : 'left',
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+	},
+	label: {
+		flex: 1,
+		alignSelf: 'flex-start',
 	},
 });

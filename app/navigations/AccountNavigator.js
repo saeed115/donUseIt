@@ -27,7 +27,13 @@ const AccountNavigator = () => {
 				name={t('routes.messages')}
 				component={MessagesScreen}
 			/>
-			<Stack.Screen name={t('routes.setting')} component={SettingScreen} />
+			<Stack.Screen
+				options={{
+					headerShown: false,
+				}}
+				name={t('routes.setting')}
+				component={SettingScreen}
+			/>
 		</Stack.Navigator>
 	);
 };

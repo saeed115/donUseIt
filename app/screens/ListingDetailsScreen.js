@@ -6,11 +6,11 @@ import FullScreen from '../components/FullScreen';
 import ListItem from '../components/Lists/ListItem';
 import colors from '../config/colors';
 import defalutStyle from '../config/defalutStyle';
-import { useTranslation } from 'react-i18next';
+import useAuth from '../auth/useAuth';
 
 const ListingDetailsScreen = ({ route }) => {
+	const { user } = useAuth();
 	const listing = route.params;
-	const { t } = useTranslation();
 
 	return (
 		<FullScreen style={styles.screen}>
@@ -29,8 +29,8 @@ const ListingDetailsScreen = ({ route }) => {
 				<View style={{ marginVertical: 30 }}>
 					<ListItem
 						style={styles.listItem}
-						title={t('accountScreen.userTitle')}
-						subTitle={t('accountScreen.userSubTitle')}
+						title={user.username}
+						subTitle={user.email}
 						image={require('../assets/user.jpg')}
 					/>
 				</View>
