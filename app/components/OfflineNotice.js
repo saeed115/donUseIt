@@ -2,13 +2,14 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Constants from 'expo-constants';
 import { useNetInfo } from '@react-native-community/netinfo';
-
 import { useTranslation } from 'react-i18next';
+
 import colors from '../config/colors';
 import AppText from './AppText';
 
 const OfflineNotice = () => {
 	const netInfo = useNetInfo();
+	const { t } = useTranslation();
 	if (netInfo.type !== 'unKnown' && netInfo.isInternetReachable === false) {
 		return (
 			<View style={styles.container}>

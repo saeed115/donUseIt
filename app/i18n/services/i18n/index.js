@@ -4,7 +4,7 @@ import { I18nManager as RNI18nManager } from 'react-native';
 import * as config from '../../config/i18n';
 
 import date from './date';
-import languageDetector from './lang-detector';
+import languageDetector from '../languageDetector';
 import translationLoader from './translation-loader';
 
 const i18n = {

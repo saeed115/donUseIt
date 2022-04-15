@@ -17,21 +17,6 @@ import useLocation from '../hooks/useLocation';
 import listingApi from '../api/listingApi';
 import { useTranslation } from 'react-i18next';
 
-const validationSchema = object().shape({
-	title: string()
-		.required(() => t('errors.required'))
-		.min(3, () => t('errors.title')),
-	price: number()
-		.required(() => t('errors.required'))
-		.min(1)
-		.max(10000, () => t('errors.price')),
-	description: string(),
-	category: object()
-		.required(() => t('errors.required'))
-		.nullable(),
-	images: array().min(1, () => t('errors.imageRequired')),
-});
-
 const categories = [
 	{
 		backgroundColor: '#fc5c65',
@@ -91,6 +76,21 @@ const categories = [
 
 const ListingEditScreen = () => {
 	const { t } = useTranslation();
+
+	const validationSchema = object().shape({
+		title: string()
+			.required(() => t('errors.required'))
+			.min(3, () => t('errors.title')),
+		price: number()
+			.required(() => t('errors.required'))
+			.min(1)
+			.max(10000, () => t('errors.price')),
+		description: string(),
+		category: object()
+			.required(() => t('errors.required'))
+			.nullable(),
+		images: array().min(1, () => t('errors.imageRequired')),
+	});
 
 	const location = useLocation();
 

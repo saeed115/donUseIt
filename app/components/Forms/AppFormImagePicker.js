@@ -8,7 +8,6 @@ const AppFormImagePicker = ({ name, style }) => {
 	const { errors, touched, values, setFieldValue } = useFormikContext();
 	const imageUris = values[name];
 
-	console.log(imageUris);
 	const handelAdd = async (uri) => {
 		const newFile = {
 			uri,

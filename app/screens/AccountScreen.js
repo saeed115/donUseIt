@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Image, ImageBackground } from 'react-native';
 
+import { useTranslation } from 'react-i18next';
 import ListItem from '../components/Lists/ListItem';
 import Icon from '../components/Icon';
 import defalutStyle from '../config/defalutStyle';
-import { useTranslation } from 'react-i18next';
 import FullScreen from '../components/FullScreen';
 import AppText from '../components/AppText';
 import useAuth from '../auth/useAuth';
@@ -12,6 +12,7 @@ import colors from '../config/colors';
 
 const AccountScreen = ({ navigation }) => {
 	const { user, logOut } = useAuth();
+	const { t } = useTranslation();
 
 	return (
 		<>

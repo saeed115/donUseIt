@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, Image, View } from 'react-native';
+import { ImageBackground, Button, StyleSheet, Image, View } from 'react-native';
 import { useDeviceOrientation } from '@react-native-community/hooks';
 import { useTranslation } from 'react-i18next';
 
@@ -9,7 +9,7 @@ import colors from '../config/colors';
 
 function WelcomeScreen({ navigation }) {
 	const { landscape } = useDeviceOrientation();
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
 
 	return (
 		<ImageBackground blurRadius={3} source={require('../assets/bg.jpg')} style={styles.background}>
