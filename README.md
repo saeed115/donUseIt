@@ -10,7 +10,7 @@
 
 ### Home screen
 
-<img src="https://github.com/saeed115/donUseIt/assets/18006541/887fb6ba-82c9-4c20-86c9-c337978451bd" width="250" alt="Facebook Login Screen" /> <img src="https://user-images.githubusercontent.com/12640832/87783634-14861000-c85f-11ea-92cb-ff99ee1f46da.png" width="250" alt="Facebook Login Screen" />
+<img src="https://github.com/saeed115/donUseIt/assets/18006541/887fb6ba-82c9-4c20-86c9-c337978451bd" width="250" alt="Facebook Login Screen" />
 
 
 ### screen
